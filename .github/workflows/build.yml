@@ -17,16 +17,14 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Generate Gradle Wrapper
-        run: |
-          # gradle/actions/setup-gradle 会提供 gradle，我们用它的 wrapper 生成
-          gradle wrapper --gradle-version=8.2
-        shell: bash
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
 
       - name: Build APK
         run: |
-          chmod +x gradlew
-          ./gradlew assembleRelease
+          # gradle/actions/setup-gradle adds gradle to PATH
+          # Use system gradle to build directly
+          gradle assembleRelease --no-daemon
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
