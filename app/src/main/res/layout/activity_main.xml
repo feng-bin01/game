@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TapClicker"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"
+        android:id="@+id/title" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:text="状态：未启动"
+        android:textSize="16sp"
+        android:id="@+id/statusText" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/statusText"
+        android:layout_marginTop="16dp"
+        android:text="启动悬浮球"
+        android:id="@+id/startFloatingBtn" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/startFloatingBtn"
+        android:layout_marginTop="24dp"
+        android:text="使用说明：\n1. 点击「启动悬浮球」\n2. 拖动悬浮球到点击位置\n3. 双击悬浮球开始/停止连点\n4. 每次点击间隔随机 300~500ms"
+        android:textSize="14sp"
+        android:lineSpacingExtra="4dp" />
+
+</RelativeLayout>
