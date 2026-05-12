@@ -18,9 +18,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Build APK
-        run: |
-          # Use system gradle (9.4.1), try with --no-configuration-cache
-          gradle assembleRelease --no-daemon --no-configuration-cache
+        run: gradle assembleRelease --no-daemon
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
