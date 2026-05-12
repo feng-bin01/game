@@ -17,14 +17,10 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
-
       - name: Build APK
         run: |
-          # gradle/actions/setup-gradle adds gradle to PATH
-          # Use system gradle to build directly
-          gradle assembleRelease --no-daemon
+          # Use system gradle (9.4.1), try with --no-configuration-cache
+          gradle assembleRelease --no-daemon --no-configuration-cache
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
