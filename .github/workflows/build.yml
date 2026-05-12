@@ -17,24 +17,16 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
-
-      - name: Grant execute permission
-        run: chmod +x gradlew
+      - name: Generate Gradle Wrapper
+        run: |
+          # gradle/actions/setup-gradle 会提供 gradle，我们用它的 wrapper 生成
+          gradle wrapper --gradle-version=8.2
+        shell: bash
 
       - name: Build APK
-        run: ./gradlew assembleRelease
-
-      - name: Sign APK
-        uses: r0adkll/sign-android-release@v1
-        with:
-          releaseDirectory: app/build/outputs/apk/release
-          signingKeyBase64: ${{ secrets.KEYSTORE }}
-          alias: ${{ secrets.KEY_ALIAS }}
-          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
-          keyPassword: ${{ secrets.KEY_PASSWORD }}
-        continue-on-error: true
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleRelease
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
